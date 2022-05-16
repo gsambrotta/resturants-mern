@@ -3,6 +3,9 @@ import Hospital from '../models/hospital.js'
 export const getHospitals = async (req, res) => {
   try {
     const hospitals = await Hospital.find({})
+    console.log({ hospitals })
+
+    hospitals.find({ name: '' })
     await res.json(hospitals)
   } catch (error) {
     res.status(500).send('Error getting hospitals')
@@ -11,9 +14,9 @@ export const getHospitals = async (req, res) => {
 
 export const postHospital = async (req, res) => {
   try {
-    const { name, city, description } = req.body
-    const hospitals = await Hospital.create({ name, city, description })
-    await res.json(hospitals)
+    const { name, address, city, description } = req.body
+    const hospital = await Hospital.create({ name, address, city, description })
+    await res.json(hospital)
   } catch (error) {
     res.status(500).send('Error posting hospital')
   }
@@ -33,7 +36,7 @@ export const getHospitalsByKeyword = async (req, res) => {
   try {
     const { keyword } = req.params
     const hospitals = await Hospital.find({
-      name: { $regex: keyword },
+      name: { $regex: keyword, $options: '$i' },
     })
 
     await res.json(hospitals)

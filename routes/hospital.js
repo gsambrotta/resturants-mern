@@ -1,5 +1,10 @@
 import express from 'express'
-import { getHospitals, postHospital, getHospitalById, getHospitalsByKeyword } from '../controllers/hospital.js'
+import {
+  getHospitals,
+  postHospital,
+  getHospitalById,
+  getHospitalsByKeyword,
+} from '../controllers/hospital.js'
 
 const { Router } = express
 
