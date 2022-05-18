@@ -1,20 +1,9 @@
 import Hospital from '../models/hospital.js'
-import Ceo from '../models/ceo.js'
-
-export const postCeo = async (req, res) => {
-  try {
-    const { name } = req.body
-    const ceo = await Ceo.create({ name })
-    await res.json(ceo)
-  } catch (error) {
-    res.status(500).send('Error posting ceo')
-  }
-}
+// import Ceo from '../models/ceo.js'
 
 export const getHospitals = async (req, res) => {
   try {
-    const hospitals = await Hospital.find({}).populate('ceo')
-    console.log('lala')
+    const hospitals = await Hospital.find({}).populate('ceo').populate('tags')
     await res.json(hospitals)
   } catch (error) {
     res.status(500).send('Error getting hospitals')
@@ -23,8 +12,19 @@ export const getHospitals = async (req, res) => {
 
 export const postHospital = async (req, res) => {
   try {
-    const { name, address, city, description } = req.body
-    const hospital = await Hospital.create({ name, address, city, description })
+    const { name, address, city, description, tags, ceo } = req.body
+    // const ceoRes = await Ceo.findOne({ _id: ceo })
+    // console.log({ ceo: ceoRes })
+
+    const hospital = await Hospital.create({
+      name,
+      address,
+      city,
+      description,
+      tags,
+      ceo,
+    })
+
     await res.json(hospital)
   } catch (error) {
     res.status(500).send('Error posting hospital')
