@@ -5,14 +5,14 @@ export const getComments = async (req, res) => {
     const comments = await Comment.find({})
     await res.json(comments)
   } catch (error) {
-    res.status(500).send('Error getting coments')
+    res.status(500).send('Error getting comments')
   }
 }
 
 export const postComment = async (req, res) => {
   try {
-    const { content } = req.body
-    const comment = await Comment.create({ content })
+    const { content, restaurant } = req.body
+    const comment = await Comment.create({ content, restaurant })
     await res.json(comment)
   } catch (error) {
     res.status(500).send('Error posting comment')

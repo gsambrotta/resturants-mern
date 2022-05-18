@@ -5,6 +5,10 @@ const CeoSchema = new Schema({
   name: {
     type: String,
   },
+  restaurant: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Restaurant',
+  },
 })
 
 const Ceo = mongoose.model('Ceo', CeoSchema)

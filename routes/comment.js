@@ -5,7 +5,7 @@ const { Router } = express
 
 const router = Router()
 
-router.post('/comments', getComments)
+router.get('/comments', getComments)
 router.post('/comment', postComment)
 
 export default router

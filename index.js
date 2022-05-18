@@ -3,7 +3,7 @@ dotenv.config('./.env')
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
-import routeHospital from './routes/hospital.js'
+import routeRestaurant from './routes/restaurant.js'
 import routeComment from './routes/comment.js'
 import routeCeo from './routes/ceo.js'
 import routeTag from './routes/tag.js'
@@ -21,7 +21,7 @@ db.once('open', () => console.log('Connected to Mongoose.'))
 app.use(cors())
 app.use(express.json())
 
-app.use('/api', routeHospital)
+app.use('/api', routeRestaurant)
 app.use('/api', routeComment)
 app.use('/api', routeTag)
 app.use('/api', routeCeo)

@@ -2,7 +2,7 @@ import Tag from '../models/tag.js'
 
 export const getTags = async (req, res) => {
   try {
-    const tags = await Tag.find({}).populate('hospitals')
+    const tags = await Tag.find({}).populate('restaurants')
     await res.json(tags)
   } catch (error) {
     res.status(500).send('Error getting tags')
