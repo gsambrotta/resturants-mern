@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 const { Schema } = mongoose
 
-const TagSchema = Schema({
+const TagSchema = new Schema({
   hospitals: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -23,9 +23,9 @@ const TagSchema = Schema({
 // before populate
 // tagDentist.hospitals // [;'6134639', '31947913']
 
-TagSchema.pre('find', function () {
-  this.populate('hospital')
-})
+// TagSchema.pre('find', function () {
+//   this.populate('hospital')
+// })
 
 // after populate
 // tagDentist.hospitals // [{name: 'dfjad', address: 'ahkfjdh'}]

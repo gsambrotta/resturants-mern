@@ -1,11 +1,20 @@
 import Hospital from '../models/hospital.js'
+import Ceo from '../models/ceo.js'
+
+export const postCeo = async (req, res) => {
+  try {
+    const { name } = req.body
+    const ceo = await Ceo.create({ name })
+    await res.json(ceo)
+  } catch (error) {
+    res.status(500).send('Error posting ceo')
+  }
+}
 
 export const getHospitals = async (req, res) => {
   try {
-    const hospitals = await Hospital.find({})
-    console.log({ hospitals })
-
-    hospitals.find({ name: '' })
+    const hospitals = await Hospital.find({}).populate('ceo')
+    console.log('lala')
     await res.json(hospitals)
   } catch (error) {
     res.status(500).send('Error getting hospitals')

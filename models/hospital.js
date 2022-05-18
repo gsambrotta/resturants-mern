@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
-const { Schema } = mongoose
+const Schema = mongoose.Schema
 
-const HospitalSchema = Schema({
+const HospitalSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -23,12 +23,16 @@ const HospitalSchema = Schema({
   tags: [
     {
       type: mongoose.Types.ObjectId,
-      ref: 'Tags',
+      ref: 'Tag',
     },
   ],
+  ceo: {
+    type: mongoose.Types.ObjectId,
+    ref: 'Ceo',
+  },
 })
 
-// HospitalSchema.pre('find', function (next) {
+// HospitalSchema.pre('findOne', function (next) {
 //   console.log('hello')
 //   this.populate('tags')
 //   next()
